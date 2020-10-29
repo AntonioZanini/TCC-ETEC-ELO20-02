@@ -88,3 +88,71 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 #define REST      0
+
+int melodyStarTrek[] = {
+  NOTE_D4,  -8, 
+  NOTE_G4,  16, 
+  NOTE_C5,  -4, 
+  NOTE_B4,   8, 
+  NOTE_G4, -16, 
+  NOTE_E4, -16, 
+  NOTE_A4, -16,
+  NOTE_D5,   2 
+};
+
+int melodyNokia[] = {
+  NOTE_E5,  8, 
+  NOTE_D5,  8, 
+  NOTE_FS4, 4, 
+  NOTE_GS4, 4, 
+  NOTE_CS5, 8, 
+  NOTE_B4,  8, 
+  NOTE_D4,  4, 
+  NOTE_E4,  4, 
+  NOTE_B4,  8, 
+  NOTE_A4,  8, 
+  NOTE_CS4, 4, 
+  NOTE_E4,  4,
+  NOTE_A4,  2
+};
+
+int melodyJigglypuff[] = {
+  NOTE_D5,  -4, 
+  NOTE_A5,   8, 
+  NOTE_FS5,  8, 
+  NOTE_D5,   8,
+  NOTE_E5,  -4, 
+  NOTE_FS5,  8, 
+  NOTE_G5,   4,
+  NOTE_FS5, -4, 
+  NOTE_E5,   8, 
+  NOTE_FS5,  4,
+  NOTE_D5,  -2,
+  NOTE_D5,  -4, 
+  NOTE_A5,   8, 
+  NOTE_FS5,  8, 
+  NOTE_D5,   8,
+  NOTE_E5,  -4, 
+  NOTE_FS5,  8, 
+  NOTE_G5,   4,
+  NOTE_FS5, -1,
+  NOTE_D5,  -4, 
+  NOTE_A5,   8, 
+  NOTE_FS5,  8, 
+  NOTE_D5,   8,
+  NOTE_E5,  -4, 
+  NOTE_FS5,  8, 
+  NOTE_G5,   4,
+  NOTE_FS5, -4, 
+  NOTE_E5,   8, 
+  NOTE_FS5,  4,
+  NOTE_D5,  -2,
+  NOTE_D5,  -4, 
+  NOTE_A5,   8, 
+  NOTE_FS5,  8, 
+  NOTE_D5,   8,
+  NOTE_E5,  -4, 
+  NOTE_FS5,  8, 
+  NOTE_G5,   4,
+  NOTE_FS5, -1
+};
