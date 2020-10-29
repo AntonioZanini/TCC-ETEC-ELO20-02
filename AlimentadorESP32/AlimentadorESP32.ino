@@ -3,12 +3,8 @@
 #include <EasyBuzzer.h>
 #include <WiFi.h>
 #include <NTPClient.h>
+#include "Defines_Buzzer.h"
 #include "Defines.h"
-
-#define PINO_BUZZER 22
-#define PINO_RESERVATORIO_SUPERIOR 24
-#define PINO_RESERVATORIO_INFERIOR 26
-#define PINO_BUZZER 25
 
 void setup() {
   Serial.begin(9600);
