@@ -1,4 +1,3 @@
-
 byte tempoAbastecimento = 0;
 
 void iniciarPinosAlimentador() {
