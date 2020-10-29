@@ -1,7 +1,5 @@
 byte tempoAbastecimento = 0;
 
-
-
 void iniciarPinosAlimentador() {
   pinMode(PINO_MOTOR, OUTPUT);
   pinMode(PINO_RESERVATORIO_SUPERIOR, INPUT);
@@ -11,7 +9,7 @@ void iniciarPinosAlimentador() {
 
 void atualizarAlimentador() {
   if (verificarAgendamento() == true) {
-    while(temporizador(tempoAbastecimento * 1000)){
+    while(temporizar(tempoAbastecimento * 1000)){
       alimentacao();
     }
     desligarMotor();
