@@ -6,7 +6,7 @@ int notaAtual = 0;
 bool pararSom = false;
 
 void iniciarBuzzer() {
-  EasyBuzzer.setPin(pinBuzzer);
+  EasyBuzzer.setPin(PINO_BUZZER);
 }
 
 void pararMusica() {
