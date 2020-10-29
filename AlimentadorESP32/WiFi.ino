@@ -9,8 +9,8 @@ void iniciarWifi() {
 void conectarWifi() {
   while (WiFi.status() != WL_CONNECTED && temporizador(2000) == true)
   {
-    delay(200);                                 // Aguarda meio segundo
-    Serial.println("Conectando ao WiFi...");     // Conectando
+    delay(200);
+    Serial.println("Conectando ao WiFi...");
   } 
   if (WiFi.status() != WL_CONNECTED) {
     notificarFaltaWifi();
