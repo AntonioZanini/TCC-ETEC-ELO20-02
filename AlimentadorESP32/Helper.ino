@@ -1,6 +1,6 @@
 unsigned long tempoAtivacao = 0;
 
-bool temporizador(int milissegundos) {
+bool temporizar(int milissegundos) {
   unsigned long tempoAtual = millis();
   if (tempoAtivacao == 0) {
     tempoAtivacao = tempoAtual;
