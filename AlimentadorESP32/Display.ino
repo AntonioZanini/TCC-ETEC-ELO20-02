@@ -6,3 +6,13 @@ void iniciarDisplay() {
    displayLCD.begin();
    displayLCD.setBacklight(HIGH);
 }
+
+void escreverDisplay(String texto, byte linha, byte coluna) {
+  displayLCD.setCursor(coluna,linha);
+  displayLCD.print(texto);
+}
+
+void limparDisplay()
+{
+  displayLCD.clear();
+}
