@@ -1,3 +1,9 @@
+enum NivelAbastecimento {
+  VAZIO,
+  ABASTECIDO,
+  CHEIO
+}
+
 byte tempoAbastecimento = 0;
 
 void iniciarPinosAlimentador() {
@@ -31,7 +37,12 @@ void alimentacao() {
 }
 
 void notificarFaltaRacao() {
-  // ESCREVER NO DISPLAY
+  limparDisplay();
+  escreverDisplay("RESERVATÓRIO", 0, 2);
+  escreverDisplay("VAZIO!", 0, 5);
+
+  // TOCAR SOM SELECIONADO
+
   // ENVIAR PARA O APP?
 }
 
@@ -41,24 +52,24 @@ int calcularReservatorio() {
    * HIGH: Com ração
    * LOW:  Sem ração
    */
-  bool sensorSuperior = digitalRead(pinReservatorioAlto);
-  bool sensorInferior = digitalRead(pinReservatorioVazio);
-  int valorReservatorio = 0;
+  bool sensorSuperior = digitalRead(PINO_RESERVATORIO_SUPERIOR);
+  bool sensorInferior = digitalRead(PINO_RESERVATORIO_INFERIOR);
+  NivelAbastecimento valorReservatorio = VAZIO;
 
   if (sensorSuperior == HIGH && sensorInferior == HIGH) {
-    valorReservatorio = 2;
+    valorReservatorio = CHEIO;
   } else if (sensorSuperior == LOW && sensorInferior == HIGH) {
-    valorReservatorio = 1;
+    valorReservatorio = ABASTECIDO;
   } else if (sensorSuperior == LOW && sensorInferior == LOW) {
-    valorReservatorio = 0;
+    valorReservatorio = VAZIO;
   }
   return valorReservatorio;
 }
 
 void desligarMotor() {
-  digitalWrite(pinMotor, LOW);
+  digitalWrite(PINO_MOTOR, LOW);
 }
 
 void ligarMotor() {
-  digitalWrite(pinMotor, HIGH);
+  digitalWrite(PINO_MOTOR, HIGH);
 }
