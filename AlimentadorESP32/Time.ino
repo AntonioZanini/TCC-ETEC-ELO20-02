@@ -1,4 +1,4 @@
-const long HORA_EM_MS = 3600000;
+#define HORA_EM_MS 3600000
 
 String horarioDoSistema = "00:00";
 int horasPassadas = 0;
@@ -21,7 +21,7 @@ String obterHorarioInternet(){
 }
 
 void atualizarHorario(){
-  if (temporizador(60000) == false) {
+  if (temporizar(60000) == false) {
     horarioDoSistema = adicionarMinuto();
   }
   if (millis() % (HORA_EM_MS * horasPassadas + 1) > 0) {
