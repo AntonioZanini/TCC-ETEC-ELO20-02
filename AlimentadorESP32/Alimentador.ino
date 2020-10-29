@@ -1,15 +1,11 @@
-enum NivelAbastecimento {
-  VAZIO,
-  ABASTECIDO,
-  CHEIO
-}
-
 byte tempoAbastecimento = 0;
 
+
+
 void iniciarPinosAlimentador() {
-  pinMode(pinMotor, OUTPUT);
-  pinMode(pinReservatorioAlto, INPUT);
-  pinMode(pinReservatorioVazio, INPUT);
+  pinMode(PINO_MOTOR, OUTPUT);
+  pinMode(PINO_RESERVATORIO_SUPERIOR, INPUT);
+  pinMode(PINO_RESERVATORIO_INFERIOR, INPUT);
   desligarMotor();
 }
 
@@ -54,7 +50,7 @@ int calcularReservatorio() {
    */
   bool sensorSuperior = digitalRead(PINO_RESERVATORIO_SUPERIOR);
   bool sensorInferior = digitalRead(PINO_RESERVATORIO_INFERIOR);
-  NivelAbastecimento valorReservatorio = VAZIO;
+  nivel_abastecimento_t valorReservatorio = VAZIO;
 
   if (sensorSuperior == HIGH && sensorInferior == HIGH) {
     valorReservatorio = CHEIO;
