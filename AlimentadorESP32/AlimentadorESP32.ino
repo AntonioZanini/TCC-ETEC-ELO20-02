@@ -17,12 +17,11 @@ void setup() {
   iniciarBuzzer();
   iniciarWifi();
   iniciarNTPClient();
-  
 }
 
 void loop() {
   verificarWifi();
-  AtualizarHorario();
+  atualizarHorario();
   
   // Quando estiver agendado:
 
