@@ -20,19 +20,19 @@ String obterHorarioInternet(){
   return ntpClient.getFormattedTime().substring(0,5);
 }
 
-void AtualizarHorario(){
+void atualizarHorario(){
   if (temporizador(60000) == false) {
     horarioDoSistema = adicionarMinuto();
   }
-  if (millis() % (HORA_EM_MS * hourElapsed + 1) > 0) {
+  if (millis() % (HORA_EM_MS * horasPassadas + 1) > 0) {
     horasPassadas++;
     horarioDoSistema = obterHorarioInternet();
   }
 }
 
 String adicionarMinuto() {
-  int horas   = systemTime.substring(0,2).toInt();
-  int minutos = systemTime.substring(3,5).toInt();
+  int horas   = horarioDoSistema.substring(0,2).toInt();
+  int minutos = horarioDoSistema.substring(3,5).toInt();
 
   return formatarHorario(horas, minutos+1);
 }
