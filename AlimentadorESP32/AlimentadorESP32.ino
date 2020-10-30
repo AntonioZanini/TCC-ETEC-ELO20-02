@@ -19,17 +19,7 @@ void setup() {
 void loop() {
   verificarWifi();
   atualizarHorario();
-  
-  // Quando estiver agendado:
-
-  
-  // VERIFICICAR REPETIÇÃO DE ATIVAÇÃO POR HORÁRIO
-  //atualizarAlimentador();
-  
-  // Sempre atualizando a saída de som.
-  //atualizarMusica();
-  
-
-  //Serial.println(obterTempoAtual());
-  delay(200);
+  atualizarMusica();
+  atualizarAlimentador();
+  delay(50);
 }
