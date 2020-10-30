@@ -33,7 +33,7 @@ void alimentacao() {
 void notificarFaltaRacao() {
   limparDisplay();
   escreverDisplay("RESERVATÓRIO", 0, 2);
-  escreverDisplay("VAZIO!", 0, 5);
+  escreverDisplay("VAZIO!", 1, 5);
 
   // TOCAR SOM SELECIONADO
 
