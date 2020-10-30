@@ -1,6 +1,6 @@
-int alertaSelecionado = 0;
-int notaAtual = 0;
-bool pararSom = false;
+int  alertaSelecionado = 0;
+int  notaAtual = 0;
+bool emExecucao = false;
 
 void iniciarBuzzer() {
   EasyBuzzer.setPin(PINO_BUZZER);
@@ -23,19 +23,20 @@ int* obterAlerta() {
   }
 }
 
-void pararMusica() {
+void pararAlerta() {
   EasyBuzzer.stopBeep();
-  pararSom = true;
+  emExecucao = false;
 }
 
 void tocarNota() {
   int* musicaAtual = obterAlerta();
   int totalNotas = sizeof(musicaAtual) / sizeof(musicaAtual[0]) / 2;
-  if (pararSom == true) {
-    return;
-  }
   if (notaAtual == totalNotas) {
     notaAtual = 0;
+    pararAlerta();
+  }
+  if (emExecucao == false) {
+    return;
   }
   EasyBuzzer.singleBeep(
     musicaAtual[notaAtual],
@@ -45,6 +46,12 @@ void tocarNota() {
   notaAtual += 2;
 }
 
+void tocarAlerta() {
+  if (emExecucao == false) {
+    emExecucao == true;
+    tocarNota();
+  }
+}
 
 int obterTempo(int divisor) {
   int duracao = 0;
