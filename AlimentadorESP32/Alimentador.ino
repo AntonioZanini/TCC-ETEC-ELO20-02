@@ -35,26 +35,21 @@ void notificarFaltaRacao() {
   escreverDisplay("RESERVATÓRIO", 0, 2);
   escreverDisplay("VAZIO!", 1, 5);
 
-  // TOCAR SOM SELECIONADO
+  tocarAlerta();
 
   // ENVIAR PARA O APP?
 }
 
 int calcularReservatorio() {
-  /*
-   * VALORES DOS SENSORES:
-   * HIGH: Com ração
-   * LOW:  Sem ração
-   */
   bool sensorSuperior = digitalRead(PINO_RESERVATORIO_SUPERIOR);
   bool sensorInferior = digitalRead(PINO_RESERVATORIO_INFERIOR);
   nivel_abastecimento_t valorReservatorio = VAZIO;
 
-  if (sensorSuperior == HIGH && sensorInferior == HIGH) {
+  if (sensorSuperior == COM_RACAO && sensorInferior == COM_RACAO) {
     valorReservatorio = CHEIO;
-  } else if (sensorSuperior == LOW && sensorInferior == HIGH) {
+  } else if (sensorSuperior == SEM_RACAO && sensorInferior == COM_RACAO) {
     valorReservatorio = ABASTECIDO;
-  } else if (sensorSuperior == LOW && sensorInferior == LOW) {
+  } else if (sensorSuperior == SEM_RACAO && sensorInferior == SEM_RACAO) {
     valorReservatorio = VAZIO;
   }
   return valorReservatorio;
