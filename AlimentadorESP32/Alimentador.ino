@@ -9,7 +9,7 @@ void iniciarPinosAlimentador() {
 
 void atualizarAlimentador() {
   if (verificarAgendamento() == true) {
-    while(temporizar(tempoAbastecimento * 1000)){
+    while(temporizar(tempoAbastecimento * 1000, ALIMENTADOR)){
       alimentacao();
     }
     desligarMotor();
