@@ -2,6 +2,7 @@
 
 volatile byte horaAtual = 0;
 volatile byte minutoAtual = 0;
+volatile byte segundoAtual = 0;
 int horasPassadas = 0;
 
 WiFiUDP udpClient;
@@ -21,23 +22,31 @@ String obterTempoAtual() {
 }
 
 void obterHorarioInternet(){
-  String horario = ntpClient.getFormattedTime().substring(0,5);
-  horaAtual   = horario.substring(0,2).toInt();
-  minutoAtual = horario.substring(3,5).toInt();
+  if (verificarWifi() == true) {
+    ntpClient.forceUpdate();
+    horaAtual    = ntpClient.getHours();
+    minutoAtual  = ntpClient.getMinutes();
+    segundoAtual = ntpClient.getSeconds();  
+  }
 }
 
 void atualizarHorario(){
-  if (temporizar(60000, TIME) == false) {
-    adicionarMinuto();
+  if (temporizar(1000, TIME) == false) {
+    adicionarSegundo();
   }
   if (millis() % (HORA_EM_MS * horasPassadas + 1) > 0) {
     horasPassadas++;
     obterHorarioInternet();
   }
+  
 }
 
-void adicionarMinuto() {
-  minutoAtual++;
+void adicionarSegundo() {
+  segundoAtual++;
+  if (segundoAtual > 59) {
+    segundoAtual = 0;
+    minutoAtual++;
+  }
   if (minutoAtual > 59) {
     minutoAtual = 0;
     horaAtual++;
