@@ -1,7 +1,11 @@
-#define PINO_MOTOR 22
-#define PINO_RESERVATORIO_SUPERIOR 24
-#define PINO_RESERVATORIO_INFERIOR 26
-#define PINO_BUZZER 25
+#define PINO_MOTOR                  22
+#define PINO_RESERVATORIO_SUPERIOR  24
+#define PINO_RESERVATORIO_INFERIOR  26
+#define PINO_BUZZER                 25
+
+#define WIFI          0
+#define TIME          1
+#define ALIMENTADOR   2
 
 #define COM_RACAO 1
 #define SEM_RACAO 2
