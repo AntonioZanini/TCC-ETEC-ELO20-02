@@ -1,13 +1,13 @@
-unsigned long tempoAtivacao = 0;
+volatile unsigned long tempoAtivacao[] = { 0, 0, 0 };
 
-bool temporizar(int milissegundos) {
+bool temporizar(int milissegundos, int remetente) {
   unsigned long tempoAtual = millis();
-  if (tempoAtivacao == 0) {
-    tempoAtivacao = tempoAtual;
+  if (tempoAtivacao[remetente] == 0) {
+    tempoAtivacao[remetente] = tempoAtual;
   }
-  if (tempoAtual - tempoAtivacao > milissegundos)
+  if (tempoAtual - tempoAtivacao[remetente] > milissegundos)
   {
-    tempoAtivacao = 0;
+    tempoAtivacao[remetente] = 0;
     return false;
   }
   return true;
