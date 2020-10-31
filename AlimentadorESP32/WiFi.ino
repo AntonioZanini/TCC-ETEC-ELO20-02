@@ -21,10 +21,14 @@ void conectarWifi() {
   Serial.println("Conectado");
 }
 
-void verificarWifi() {
+bool verificarWifi() {
   if (WiFi.status() != WL_CONNECTED) {
     conectarWifi();
+    if ((WiFi.status() != WL_CONNECTED)) {
+      return false;
+    }
   }
+  return true;
 }
 
 void notificarFaltaWifi() {
