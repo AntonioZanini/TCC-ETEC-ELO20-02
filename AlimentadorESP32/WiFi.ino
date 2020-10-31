@@ -7,7 +7,7 @@ void iniciarWifi() {
 }
 
 void conectarWifi() {
-  while (WiFi.status() != WL_CONNECTED && temporizar(2000) == true)
+  while (WiFi.status() != WL_CONNECTED && temporizar(2000, WIFI) == true)
   {
     delay(200);
       limparDisplay();
