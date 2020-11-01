@@ -1,4 +1,4 @@
-int  alertaSelecionado = 0;
+short  alertaSelecionado = 0;
 int  notaAtual = 0;
 bool emExecucao = false;
 
@@ -6,7 +6,7 @@ void iniciarBuzzer() {
   EasyBuzzer.setPin(PINO_BUZZER);
 }
 
-void selecionarAlerta(int numeroAlerta) {
+void selecionarAlerta(short numeroAlerta) {
   alertaSelecionado = numeroAlerta;
 }
 
