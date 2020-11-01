@@ -10,7 +10,6 @@ NTPClient ntpClient(udpClient, "a.st1.ntp.br", -3 * 3600, 60000);
 
 void iniciarNTPClient() {
    ntpClient.begin(); 
-   ntpClient.forceUpdate();
    obterHorarioInternet();
 }
 
@@ -22,7 +21,7 @@ String obterTempoAtual() {
 }
 
 void obterHorarioInternet(){
-  if (verificarWifi() == true) {
+  if (verificarConexao() == true) {
     ntpClient.forceUpdate();
     horaAtual    = ntpClient.getHours();
     minutoAtual  = ntpClient.getMinutes();
@@ -34,11 +33,10 @@ void atualizarHorario(){
   if (temporizar(1000, TIME) == false) {
     adicionarSegundo();
   }
-  if (millis() % (HORA_EM_MS * horasPassadas + 1) > 0) {
+  if (millis() % (HORA_EM_MS * (horasPassadas + 1)) > 0) {
     horasPassadas++;
     obterHorarioInternet();
   }
-  
 }
 
 void adicionarSegundo() {
