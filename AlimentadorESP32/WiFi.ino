@@ -10,9 +10,9 @@ void conectarWifi() {
   while (WiFi.status() != WL_CONNECTED && temporizar(2000, WIFI) == true)
   {
     delay(200);
-      limparDisplay();
-      escreverDisplay("CONECTANDO", 0, 0);
-      escreverDisplay("A WI-FI...", 1, 0);
+    limparDisplay();
+    escreverDisplay("CONECTANDO", 0, 0);
+    escreverDisplay("A WI-FI...", 1, 0);
   } 
   if (WiFi.status() != WL_CONNECTED) {
     notificarFaltaWifi();
@@ -29,6 +29,10 @@ bool verificarWifi() {
     }
   }
   return true;
+}
+
+bool verificarConexao() {
+  return WiFi.status() == WL_CONNECTED;
 }
 
 void notificarFaltaWifi() {
