@@ -2,9 +2,11 @@
 #include <LiquidCrystal_I2C.h>
 #include <EasyBuzzer.h>
 #include <WiFi.h>
+#include <PubSubClient.h>
 #include <NTPClient.h>
-#include "Defines_Buzzer.h"
-#include "Defines.h"
+#include <Preferences.h>
+#include "AlimentadorESP32.h"
+#include "Buzzer.h"
 
 TaskHandle_t tarefaNucleoSecundario;
 
@@ -15,6 +17,7 @@ void setup() {
   iniciarDisplay();
   iniciarBuzzer();
   iniciarWifi();
+  inciarMQTT();
   iniciarNTPClient();
 
   xTaskCreatePinnedToCore(
@@ -29,7 +32,7 @@ void setup() {
 
 void loop() {
   verificarWifi();
-  
+  verificarMQTT();
   
   // VERIFICICAR REPETIÇÃO DE ATIVAÇÃO POR HORÁRIO
   //atualizarAlimentador();
