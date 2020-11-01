@@ -1,4 +1,9 @@
-byte tempoAbastecimento = 0;
+#define COM_RACAO 1
+#define SEM_RACAO 0
+
+short tempoAbastecimento = 0;
+String agendamentos;
+nivel_abastecimento_t nivelAtual = VAZIO;
 
 void iniciarPinosAlimentador() {
   pinMode(PINO_MOTOR, OUTPUT);
@@ -21,8 +26,21 @@ bool verificarAgendamento() {
   return false;
 }
 
+void atribuirTempoAbastecimento(short tempoNovo) {
+  tempoAbastecimento = tempoNovo;
+}
+
+void atribuirAgendamentos(String agendamentosNovos) {
+  agendamentos = agendamentosNovos;
+}
+
 void alimentacao() {
-  if (calcularReservatorio() >= 1) {   
+  nivel_abastecimento_t nivelCalculado = calcularReservatorio();
+  if (nivelCalculado != nivelAtual) {
+    publicarTopico(NIVEL_RESERVATORIO, String(nivelCalculado).c_str());
+    nivelAtual = nivelCalculado;
+  }
+  if (nivelCalculado > VAZIO) {   
     ligarMotor();
   } else {
     desligarMotor();
@@ -40,7 +58,7 @@ void notificarFaltaRacao() {
   // ENVIAR PARA O APP?
 }
 
-int calcularReservatorio() {
+nivel_abastecimento_t calcularReservatorio() {
   bool sensorSuperior = digitalRead(PINO_RESERVATORIO_SUPERIOR);
   bool sensorInferior = digitalRead(PINO_RESERVATORIO_INFERIOR);
   nivel_abastecimento_t valorReservatorio = VAZIO;
