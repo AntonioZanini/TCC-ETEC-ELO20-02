@@ -1,4 +1,4 @@
-volatile unsigned long tempoAtivacao[] = { 0, 0, 0 };
+volatile unsigned long tempoAtivacao[] = { 0, 0, 0, 0, 0 };
 
 bool temporizar(int milissegundos, int remetente) {
   unsigned long tempoAtual = millis();
