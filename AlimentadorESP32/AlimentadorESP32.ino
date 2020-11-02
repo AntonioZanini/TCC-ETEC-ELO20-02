@@ -36,10 +36,9 @@ void loop() {
   
   // VERIFICICAR REPETIÇÃO DE ATIVAÇÃO POR HORÁRIO
   //atualizarAlimentador();
-  
-  //atualizarMusica();
 
-  Serial.println(obterTempoAtual());
+
+
   delay(200);
 }
 
