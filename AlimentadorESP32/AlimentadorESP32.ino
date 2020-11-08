@@ -31,19 +31,18 @@ void setup() {
 }
 
 void loop() {
+  // VERIFICA A CONEXÃO WIFI E MQTT
   verificarWifi();
   verificarMQTT();
   
-  // VERIFICICAR REPETIÇÃO DE ATIVAÇÃO POR HORÁRIO
-  //atualizarAlimentador();
-
-
-
-  delay(200);
+  // VERIFICICAR OS AGENDAMENTOS DE ALIMENTAÇÃO
+  atualizarAlimentador();
 }
 
 void execucaoNucleoSecundario(void * parameter) {
+  // LOOP DO NÚCLEO SEGUNDÁRIO
   for (;;) {
+    // ATUALIZAÇÃO DO RELÓGIO
     atualizarHorario();
   }
 }
