@@ -11,8 +11,6 @@
 TaskHandle_t tarefaNucleoSecundario;
 
 void setup() {
-  Serial.begin(9600);
-
   iniciarPinosAlimentador();
   iniciarDisplay();
   iniciarBuzzer();
