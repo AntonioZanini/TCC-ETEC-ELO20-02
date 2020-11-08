@@ -18,7 +18,8 @@ void conectarWifi() {
     notificarFaltaWifi();
     return;
   }
-  Serial.println("Conectado");
+  limparDisplay();
+  escreverDisplay("CONECTADO", 0, 0);
 }
 
 bool verificarWifi() {
