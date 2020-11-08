@@ -16,6 +16,7 @@ void atualizarAlimentador() {
   if (verificarAgendamento() == true) {
     while(temporizar(tempoAbastecimento * 1000, ALIMENTADOR)){
       alimentacao();
+      if (nivelAtual == VAZIO) { break; }
     }
     desligarMotor();
     delay(60000);
@@ -32,6 +33,12 @@ void atribuirTempoAbastecimento(short tempoNovo) {
 
 void atribuirAgendamentos(String agendamentosNovos) {
   agendamentos = agendamentosNovos;
+}
+
+void testarAbastecimento() {
+  ligarMotor();
+  delay(tempoAbastecimento * 1000);
+  desligarMotor();
 }
 
 void alimentacao() {
@@ -52,10 +59,7 @@ void notificarFaltaRacao() {
   limparDisplay();
   escreverDisplay("RESERVATÓRIO", 0, 2);
   escreverDisplay("VAZIO!", 1, 5);
-
   tocarAlerta();
-
-  // ENVIAR PARA O APP?
 }
 
 nivel_abastecimento_t calcularReservatorio() {
