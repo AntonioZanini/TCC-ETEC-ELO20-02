@@ -89,18 +89,7 @@
 #define NOTE_DS8 4978
 #define REST     0
 
-int melodyStarTrek[] = {
-  NOTE_D4,  -8, 
-  NOTE_G4,  16, 
-  NOTE_C5,  -4, 
-  NOTE_B4,   8, 
-  NOTE_G4, -16, 
-  NOTE_E4, -16, 
-  NOTE_A4, -16,
-  NOTE_D5,   2 
-};
-
-int melodyNokia[] = {
+int alertaSonoroSimples[] = {
   NOTE_E5,  8, 
   NOTE_D5,  8, 
   NOTE_FS4, 4, 
@@ -116,7 +105,18 @@ int melodyNokia[] = {
   NOTE_A4,  2
 };
 
-int melodyJigglypuff[] = {
+int alertaMusicalCurto[] = {
+  NOTE_D4,  -8, 
+  NOTE_G4,  16, 
+  NOTE_C5,  -4, 
+  NOTE_B4,   8, 
+  NOTE_G4, -16, 
+  NOTE_E4, -16, 
+  NOTE_A4, -16,
+  NOTE_D5,   2 
+};
+
+int alertaMusicalLongo[] = {
   NOTE_D5,  -4, 
   NOTE_A5,   8, 
   NOTE_FS5,  8, 
@@ -156,3 +156,7 @@ int melodyJigglypuff[] = {
   NOTE_G5,   4,
   NOTE_FS5, -1
 };
+
+#define TAMANHO_ALERTA_SIMPLES  26
+#define TAMANHO_MUSICA_CURTA    16
+#define TAMANHO_MUSICA_LONGA    74
