@@ -1,6 +1,8 @@
-short  alertaSelecionado = 0;
-int  notaAtual = 0;
-bool emExecucao = false;
+short  alertaSelecionado = 1;
+int    notaAtual = 0;
+bool   emExecucao = false;
+int*   melodiaSelecionada;
+int    tamanhoMelodia;
 
 void iniciarBuzzer() {
   EasyBuzzer.setPin(PINO_BUZZER);
@@ -10,47 +12,53 @@ void selecionarAlerta(short numeroAlerta) {
   alertaSelecionado = numeroAlerta;
 }
 
-int* obterAlerta() {
+void selecionarMelodia() {
   switch (alertaSelecionado) {
     case 0:
-      return melodyNokia;
+      tamanhoMelodia = TAMANHO_ALERTA_SIMPLES;
+      prepararMelodia(alertaSonoroSimples);
+      break;
     case 1:
-      return melodyStarTrek;
+      tamanhoMelodia = TAMANHO_MUSICA_CURTA;
+      prepararMelodia(alertaMusicalCurto);
+      break;
     case 2:
-      return melodyJigglypuff;
+      tamanhoMelodia = TAMANHO_MUSICA_LONGA;
+      prepararMelodia(alertaMusicalLongo);
+      break;
     default:
-      return melodyNokia;
+      tamanhoMelodia = TAMANHO_ALERTA_SIMPLES;
+      prepararMelodia(alertaSonoroSimples);
+  }
+}
+
+void prepararMelodia(int melodia[]) {
+  if (melodiaSelecionada != NULL) {
+    free(melodiaSelecionada);
+  }
+  melodiaSelecionada = (int *) malloc(tamanhoMelodia * sizeof(int));
+  for (int i=0; i<tamanhoMelodia; i++) {
+    melodiaSelecionada[i] = melodia[i];
   }
 }
 
 void pararAlerta() {
   EasyBuzzer.stopBeep();
-  emExecucao = false;
-}
-
-void tocarNota() {
-  int* musicaAtual = obterAlerta();
-  int totalNotas = sizeof(musicaAtual) / sizeof(musicaAtual[0]) / 2;
-  if (notaAtual == totalNotas) {
-    notaAtual = 0;
-    pararAlerta();
-  }
-  if (emExecucao == false) {
-    return;
-  }
-  EasyBuzzer.singleBeep(
-    musicaAtual[notaAtual],
-    obterTempo(musicaAtual[notaAtual+1]),
-    tocarNota
-  );
-  notaAtual += 2;
 }
 
 void tocarAlerta() {
-  if (emExecucao == false) {
-    emExecucao == true;
-    tocarNota();
+  selecionarMelodia();
+  if (notaAtual == tamanhoMelodia) {
+    notaAtual = 0;
+    pararAlerta();
+    return;
   }
+  EasyBuzzer.singleBeep(
+    melodiaSelecionada[notaAtual],
+    obterTempo(melodiaSelecionada[notaAtual+1]),
+    tocarAlerta
+  );
+  notaAtual += 2;
 }
 
 int obterTempo(int divisor) {
@@ -58,12 +66,10 @@ int obterTempo(int divisor) {
   int compasso = (60000 * 4) / 80;
   
   if (divisor > 0) {
-    // regular note, just proceed
     duracao = (compasso) / divisor;
   } else if (divisor < 0) {
-    // dotted notes are represented with negative durations!!
     duracao = (compasso) / abs(divisor);
-    duracao *= 1.5; // increases the duration in half for dotted notes
+    duracao *= 1.5;
   }
 
   return duracao;
