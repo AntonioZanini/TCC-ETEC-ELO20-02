@@ -1,5 +1,5 @@
-const char* ssid = "Net_Core";
-const char* password =  "p4554r05";  
+const char* ssid = "MY_WIFI";
+const char* password =  "ITSNOT1234";  
 
 void iniciarWifi() {
   WiFi.begin(ssid, password);
