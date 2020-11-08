@@ -18,19 +18,19 @@ void inciarMQTT() {
 
 void conectarMQTT() {
   while (mqttClient.connected() == false && temporizar(2000, MQTT) == true) {
-    Serial.print("* Tentando se conectar ao Broker MQTT: ");
     if (mqttClient.connect(ID_MQTT) == true ) {
-      Serial.println("Conectado com sucesso ao broker MQTT!");
       assinarTopicos();
       return;
     }
     else {
-      Serial.println("Falha ao reconectar no broker.");
-      Serial.println("Havera nova tentatica de conexao em 2s");
+      limparDisplay();
+      escreverDisplay("FALHA NO MQTT", 0, 0);
+      escreverDisplay("NOVA TENTATIVA", 1, 0);
       delay(400);
     }
   }
-  Serial.println("Não foi possível conecter ao MQTT.");
+  limparDisplay();
+  escreverDisplay("MQTT OFFLINE", 0, 0);
 }
 
 void assinarTopicos() {
