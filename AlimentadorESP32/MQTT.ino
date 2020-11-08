@@ -65,6 +65,8 @@ void receberResposta(char* topico, byte* conteudo, unsigned int tamanho) {
   } else if (topicoAtual.equals(ALARME_SELECIONADO)) {
     armazenarNumero(ALARME_SELECIONADO, mensagem.toInt());
     selecionarAlerta(mensagem.toInt());
+  } else if (topicoAtual.equals(TESTE_ABASTECIMENTO)) {
+    testarAbastecimento();
   }
 }
 
